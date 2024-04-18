@@ -62,7 +62,9 @@ $ ros2 run conan-poco-package my_node
 
 ## conan_library-consumer
 
-A ROS2 package that contains a library (`hello`) with a Conan dependency (`Poco`) that is later consumed from `my_package`
+A ROS2 package that contains a library (`hello`) with a Conan dependency (`Poco`) that is later consumed from `my_package`.
+
+The Conan dependency of Poco has to be added to the consumer as well.
 
 ```bash
 $ cd conan_library-consumer/
