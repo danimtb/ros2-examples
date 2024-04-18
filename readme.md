@@ -1,10 +1,8 @@
-ros2-examples
--------------
+# ros2-examples
 
-Examples of ROS2 with different packages
+Examples of ROS2 with different packages.
 
-library-consumer
-++++++++++++++++
+## library-consumer
 
 Simple example with a package that provides a C++ library (`package_dep`) and a package that consumes the library from a node (`my_package`).
 
