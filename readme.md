@@ -20,3 +20,42 @@ $ source install/setup.sh
 $ ros2 run my_package my_node
 Hello World Debug!
 ```
+
+
+## conan_node
+
+Example with a package that provides a node (`my_node`) that sends messages to a topic but has a dependency to the Poco library provided by Conan.
+
+```
+$ cd conan_node/conan-poco-package
+$ conan install . --output-folder conan
+...
+======== Installing packages ========
+bzip2/1.0.8: Already installed! (1 of 11)
+expat/2.5.0: Already installed! (2 of 11)
+libpq/15.4: Already installed! (3 of 11)
+lz4/1.9.4: Already installed! (4 of 11)
+sqlite3/3.45.0: Already installed! (5 of 11)
+zlib/1.3.1: Already installed! (6 of 11)
+zstd/1.5.5: Already installed! (7 of 11)
+openssl/3.2.1: Already installed! (8 of 11)
+pcre2/10.42: Already installed! (9 of 11)
+libmysqlclient/8.1.0: Already installed! (10 of 11)
+poco/1.13.3: Already installed! (11 of 11)
+...
+
+$ colcon build --cmake-args "-DCMAKE_BUILD_TYPE=Release"
+Starting >>> conan-poco-package
+Finished <<< conan-poco-package [14.8s]
+
+Summary: 1 package finished [16.1s]
+
+$ source install/setup.bash
+$ ros2 run conan-poco-package my_node
+[INFO] [1713440783.508279100] [minimal_publisher]: Publishing: '6cd3556deb0da54bca060b4c39479839 0'
+[INFO] [1713440784.005371600] [minimal_publisher]: Publishing: '6cd3556deb0da54bca060b4c39479839 1'
+[INFO] [1713440784.502670600] [minimal_publisher]: Publishing: '6cd3556deb0da54bca060b4c39479839 2'
+[INFO] [1713440785.006211400] [minimal_publisher]: Publishing: '6cd3556deb0da54bca060b4c39479839 3'
+[INFO] [1713440785.500347300] [minimal_publisher]: Publishing: '6cd3556deb0da54bca060b4c39479839 4'
+...
+```

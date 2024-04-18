@@ -1,3 +1,10 @@
 */build
 */install
 */log
+*/conan
+
+*/*/build
+*/*/install
+*/*/log
+*/*/conan
+*/*/CMake*
