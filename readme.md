@@ -95,3 +95,54 @@ $ source install/setup.bash
 $ ros2 run my_package my_node
 3e25960a79dbc69b674cd4ec67a72c62 Release
 ```
+
+## conan_library-conan_consumer
+
+A ROS2 package that contains a library (`hello`) with a Conan dependency (`Poco`) that is later consumed from `my_package` via Conan as well.
+
+
+```bash
+$ cd conan_library-conan_consumer/package_dep
+$ conan create .
+======== Exporting recipe to the cache ========
+package_dep/1.0.0: Exporting package recipe: /home/danimtb/ros2-examples/conan_library-conan_consumer/package_dep/conanfile.py
+package_dep/1.0.0: Calling export_sources()
+package_dep/1.0.0: Copied 1 '.py' file: conanfile.py
+package_dep/1.0.0: Copied 1 '.txt' file: CMakeLists.txt
+package_dep/1.0.0: Copied 1 '.xml' file: package.xml
+package_dep/1.0.0: Copied 1 '.h' file: hello.h
+package_dep/1.0.0: Copied 1 '.cpp' file: hello.cpp
+...
+ackage_dep/1.0.0: Calling package()
+package_dep/1.0.0: package(): Packaged 1 '.h' file: hello.h
+package_dep/1.0.0: package(): Packaged 1 '.a' file: libpackage_dep.a
+package_dep/1.0.0: Created package revision 79c4366985d8b5a3edf081e3b7959d80
+
+$ cd ../my_package
+$ conan install . --output-folder conan
+...
+======== Installing packages ========
+bzip2/1.0.8: Already installed! (1 of 12)
+expat/2.5.0: Already installed! (2 of 12)
+libpq/15.4: Already installed! (3 of 12)
+lz4/1.9.4: Already installed! (4 of 12)
+sqlite3/3.45.0: Already installed! (5 of 12)
+zlib/1.3.1: Already installed! (6 of 12)
+zstd/1.5.5: Already installed! (7 of 12)
+openssl/3.2.1: Already installed! (8 of 12)
+pcre2/10.42: Already installed! (9 of 12)
+libmysqlclient/8.1.0: Already installed! (10 of 12)
+poco/1.13.3: Already installed! (11 of 12)
+package_dep/1.0.0: Already installed! (12 of 12)
+...
+
+$ colcon build --cmake-args "-DCMAKE_BUILD_TYPE=Release"
+Starting >>> my_package
+Finished <<< my_package [4.42s]
+
+Summary: 1 package finished [5.54s]
+
+$ source install/setup.bash
+$ ros2 run my_package my_node
+3e25960a79dbc69b674cd4ec67a72c62 Release
+```
