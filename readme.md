@@ -27,6 +27,7 @@ Hello World Debug!
 Example with a package that provides a node (`my_node`) that sends messages to a topic but has a dependency to the Poco library provided by Conan.
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd conan_node/conan-poco-package
 $ conan install . --output-folder conan
 ...
@@ -44,7 +45,7 @@ libmysqlclient/8.1.0: Already installed! (10 of 11)
 poco/1.13.3: Already installed! (11 of 11)
 ...
 
-$ colcon build --cmake-args "-DCMAKE_BUILD_TYPE=Release"
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
 Starting >>> conan-poco-package
 Finished <<< conan-poco-package [14.8s]
 
@@ -67,6 +68,7 @@ A ROS2 package that contains a library (`hello`) with a Conan dependency (`Poco`
 The Conan dependency of Poco has to be added to the consumer as well.
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd conan_library-consumer/
 $ conan install . --output-folder conan
 ...
@@ -84,7 +86,7 @@ libmysqlclient/8.1.0: Already installed! (10 of 11)
 poco/1.13.3: Already installed! (11 of 11)
 ...
 
-$ colcon build --cmake-args "-DCMAKE_BUILD_TYPE=Release"
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
 Starting >>> package_dep
 Finished <<< package_dep [8.69s]
 Starting >>> my_package
@@ -102,6 +104,7 @@ A ROS2 package that contains a library (`hello`) with a Conan dependency (`Poco`
 
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd conan_library-conan_consumer/package_dep
 $ conan create .
 ======== Exporting recipe to the cache ========
@@ -136,7 +139,7 @@ poco/1.13.3: Already installed! (11 of 12)
 package_dep/1.0.0: Already installed! (12 of 12)
 ...
 
-$ colcon build --cmake-args "-DCMAKE_BUILD_TYPE=Release"
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
 Starting >>> my_package
 Finished <<< my_package [4.42s]
 

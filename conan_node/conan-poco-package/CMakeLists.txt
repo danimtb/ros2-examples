@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_TOOLCHAIN_FILE conan/conan_toolchain.cmake)
-
 project(conan-poco-package)
 
 # Default to C++14
