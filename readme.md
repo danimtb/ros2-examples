@@ -149,3 +149,28 @@ $ source install/setup.bash
 $ ros2 run my_package my_node
 3e25960a79dbc69b674cd4ec67a72c62 Release
 ```
+
+
+## rosdep_example
+
+Use rosdep integration with Conan to build a ros node.
+
+#### Configure
+
+```bash
+$ git clone -b feature/conan git@github.com:danimtb/rosdep.git
+$ cd rosdep
+$ workon rosdep
+$ pip install -e .
+$ rosdep init
+$ rosdep update
+# edit /etc/ros/rosdep/sources.list.d to add the
+# conan index: yaml https://raw.githubusercontent.com/danimtb/rosdistro/feature/conan/rosdep/conan.yaml
+
+#### Build the example
+
+```bash
+$ cd conan_example
+$ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid]
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
+```
