@@ -166,11 +166,13 @@ $ rosdep init
 $ rosdep update
 # edit /etc/ros/rosdep/sources.list.d to add the
 # conan index: yaml https://raw.githubusercontent.com/danimtb/rosdistro/feature/conan/rosdep/conan.yaml
+$ rosdep update
+```
 
 #### Build the example
 
 ```bash
-$ cd conan_example
-$ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid]
+$ cd rosdep_example/my_node
+$ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid] [--as-root conan:no]
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
 ```

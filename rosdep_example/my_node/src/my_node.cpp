@@ -70,7 +70,7 @@ class MinimalPublisher : public rclcpp::Node
     {
         auto message = std_msgs::msg::String();
 
-        std::string data "Hello world!";
+        std::string data = "Hello world!";
         std::string msg = compress(data, 6);
 
         message.data = msg + " " + std::to_string(count_++);
