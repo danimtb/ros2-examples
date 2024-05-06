@@ -23,8 +23,8 @@ class ExampleApplicationConan(ConanFile):
         self.requires("poco/1.13.3")
 
     def build(self):
-        # /opt/ros/humble/setup.sh &&
-        self.run(f"colcon build --cmake-args '-DCMAKE_BUILD_TYPE={self.settings.build_type}'")
+        # source /opt/ros/humble/setup.sh
+        self.run(f"colcon build --cmake-args '-DCMAKE_BUILD_TYPE={self.settings.build_type}' '-DCMAKE_TOOLCHAIN_FILE={self.build_folder}/conan_toolchain.cmake'")
 
     def package(self):
         copy(self, "*.h", os.path.join(self.source_folder, "include"), os.path.join(self.package_folder, "include"))

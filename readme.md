@@ -86,7 +86,7 @@ libmysqlclient/8.1.0: Already installed! (10 of 11)
 poco/1.13.3: Already installed! (11 of 11)
 ...
 
-$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=../conan/conan_toolchain.cmake'
 Starting >>> package_dep
 Finished <<< package_dep [8.69s]
 Starting >>> my_package
@@ -169,10 +169,14 @@ $ rosdep update
 $ rosdep update
 ```
 
-#### Build the example
+#### Build and run the example
 
 ```bash
 $ cd rosdep_example/my_node
 $ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid] [--as-root conan:no]
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
+
+
+$ source install/setup.bash
+$ ros2 run my_package my_node
 ```
