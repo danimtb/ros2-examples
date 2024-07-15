@@ -7,7 +7,9 @@ Examples of ROS2 with different packages.
 Simple example with a package that provides a C++ library (`package_dep`) and a package that consumes the library from a node (`my_package`).
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd library-consumer
+$ rosdep install --from-paths pacakge_dep
 $ colcon build
 Starting >>> package_dep
 Finished <<< package_dep [15.9s]
@@ -179,4 +181,23 @@ $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE
 
 $ source install/setup.bash
 $ ros2 run my_package my_node
+```
+
+## conan_consumer
+
+A ROS2 package (`consumer`) that contains a library (`hello`) with a Conan dependency (`box2d`) that is later consumed from `app`.
+
+The box2d `find()` dependency of Poco has to be added to the consumer as well.
+
+```bash
+$ conan config install https://github.com/danimtb/ros2_conan_config.git
+$ cd conan_consumer
+$ conan install consumer/ --output-folder .
+...
+$ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'
+...
+
+$ source install/setup.bash
+$ ros2 run app main
+Hello World Release! 8
 ```
