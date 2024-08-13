@@ -14,8 +14,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 
 find_package(box2d REQUIRED)
-
-message("[consumer] box2d found?: ${BOX2D_VERSION}")
+find_package(Boost CONFIG REQUIRED)
 
 add_library(consumer src/hello.cpp)
 
@@ -24,7 +23,7 @@ target_include_directories(consumer PUBLIC
   $<INSTALL_INTERFACE:include>)
 
 target_compile_features(consumer PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-target_link_libraries(consumer box2d::box2d)
+target_link_libraries(consumer box2d::box2d boost::boost)
 
 ament_export_targets(consumerTargets HAS_LIBRARY_TARGET)
 

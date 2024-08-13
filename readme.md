@@ -190,14 +190,15 @@ A ROS2 package (`consumer`) that contains a library (`hello`) with a Conan depen
 The box2d `find()` dependency of Poco has to be added to the consumer as well.
 
 ```bash
-$ conan config install https://github.com/danimtb/ros2_conan_config.git
 $ cd conan_consumer
-$ conan install consumer/ --output-folder .
-...
+$ rosdep update
+$ rosdep install --from-paths consumer/ [--as-root=conan:no]
+
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'
 ...
 
 $ source install/setup.bash
 $ ros2 run app main
 Hello World Release! 8
+{"pi":3.141E0,"happy":true,"name":"Boost","nothing":null,"answer":{"everything":42},"list":[1,0,2],"object":{"currency":"USD","value":4.299E1}}
 ```

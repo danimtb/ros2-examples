@@ -1,5 +1,0 @@
-[requires]
-box2d/2.3.1
-
-[generators]
-Ament
