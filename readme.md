@@ -174,6 +174,7 @@ $ rosdep update
 #### Build and run the example
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd rosdep_example/my_node
 $ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid] [--as-root conan:no]
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
@@ -204,6 +205,7 @@ $ rosdep update
 #### Build and run the example
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd conan_consumer
 $ rosdep install --from-paths consumer/ [--as-root=conan:no]
 
