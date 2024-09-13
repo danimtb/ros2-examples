@@ -13,10 +13,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(consumer REQUIRED)
-find_package(box2d REQUIRED)
-find_package(Boost CONFIG REQUIRED)
-add_executable(main src/main.cpp)
 
+add_executable(main src/main.cpp)
 
 target_include_directories(main PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/app>

@@ -23,9 +23,10 @@ target_include_directories(consumer PUBLIC
   $<INSTALL_INTERFACE:include>)
 
 target_compile_features(consumer PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-target_link_libraries(consumer box2d::box2d boost::boost)
+ament_target_dependencies(consumer box2d Boost)
 
 ament_export_targets(consumerTargets HAS_LIBRARY_TARGET)
+ament_export_dependencies(box2d Boost)
 
 install(
   DIRECTORY include/
