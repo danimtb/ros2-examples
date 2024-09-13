@@ -172,14 +172,15 @@ $ workon rosdep
 $ pip install -e .
 $ rosdep init
 $ rosdep update
-# edit /etc/ros/rosdep/sources.list.d to add the
-# conan index: yaml https://raw.githubusercontent.com/danimtb/rosdistro/feature/conan/rosdep/conan.yaml
+# edit /etc/ros/rosdep/sources.list.d/20-default.list to add the conan index:
+# yaml https://raw.githubusercontent.com/danimtb/rosdistro/feature/conan/rosdep/conan.yaml
 $ rosdep update
 ```
 
 #### Build and run the example
 
 ```bash
+$ source /opt/ros/humble/setup.bash
 $ cd rosdep_example/my_node
 $ rosdep install --from-paths . [--rosdistro humble] [--os ubuntu:lucid] [--as-root conan:no]
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release' '-DCMAKE_TOOLCHAIN_FILE=conan/conan_toolchain.cmake'
@@ -191,13 +192,27 @@ $ ros2 run my_package my_node
 
 ## conan_consumer
 
-A ROS2 package (`consumer`) that contains a library (`hello`) with a Conan dependency (`box2d`) that is later consumed from `app`.
+A ROS2 package (`consumer`) that contains a library (`hello`) with a Conan dependencies (`box2d` & `boost`) that is later consumed from `app`.
 
-The box2d `find()` dependency of Poco has to be added to the consumer as well.
+#### Configure
 
 ```bash
-$ cd conan_consumer
+$ git clone -b feature/conan git@github.com:danimtb/rosdep.git
+$ cd rosdep
+$ workon rosdep
+$ pip install -e .
+$ rosdep init
 $ rosdep update
+# edit /etc/ros/rosdep/sources.list.d/20-default.list to add the conan index:
+# yaml https://raw.githubusercontent.com/danimtb/rosdistro/feature/conan/rosdep/conan.yaml
+$ rosdep update
+```
+
+#### Build and run the example
+
+```bash
+$ source /opt/ros/humble/setup.bash
+$ cd conan_consumer
 $ rosdep install --from-paths consumer/ [--as-root=conan:no]
 
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'
