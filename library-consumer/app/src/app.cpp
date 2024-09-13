@@ -1,10 +1,10 @@
-#include "package_dep/hello.h"
+#include "meet/meet.h"
 
 int main(int argc, char ** argv)
 {
   (void) argc;
   (void) argv;
 
-  hello();
+  meet();
   return 0;
 }

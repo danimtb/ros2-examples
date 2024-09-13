@@ -4,22 +4,28 @@ Examples of ROS2 with different packages.
 
 ## library-consumer
 
-Simple example with a package that provides a C++ library (`package_dep`) and a package that consumes the library from a node (`my_package`).
+Simple example with 4 different packages that depend on each other (app -> meet -> greet -> hello). The app package produces an executbale that uses the utilities from the other libraries. This is an example to showcase how Ament and Colcon work with transitive depdendencies.
 
 ```bash
 $ source /opt/ros/humble/setup.bash
 $ cd library-consumer
 $ rosdep install --from-paths pacakge_dep
 $ colcon build
-Starting >>> package_dep
-Finished <<< package_dep [15.9s]
-Starting >>> my_package
-Finished <<< my_package [8.30s]
+Starting >>> hello
+Finished <<< hello [15.9s]
+Starting >>> greet
+Finished <<< greet [14.7s]
+Starting >>> meet
+Finished <<< meet [13.6s]
+Starting >>> app
+Finished <<< app [8.30s]
 
-Summary: 2 packages finished [25.7s]
+Summary: 4 packages finished [52.5s]
 
 $ source install/setup.sh
-$ ros2 run my_package my_node
+$ ros2 run app main
+Nice to meet you!
+My greet is:
 Hello World Debug!
 ```
 
