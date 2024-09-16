@@ -213,7 +213,7 @@ $ rosdep update
 ```bash
 $ source /opt/ros/humble/setup.bash
 $ cd conan_consumer
-$ rosdep install --from-paths consumer/ [--as-root=conan:no]
+$ rosdep install --from-paths consumer
 
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'
 ...
