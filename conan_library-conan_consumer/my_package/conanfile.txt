@@ -1,6 +1,0 @@
-[requires]
-package_dep/1.0.0
-
-[generators]
-CMakeToolchain
-CMakeDeps
