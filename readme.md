@@ -11,8 +11,7 @@ This example does **NOT** use Conan.
 
 ```bash
 $ source /opt/ros/humble/setup.bash
-$ cd library-consumer
-$ rosdep install --from-paths pacakge_dep
+$ cd colcon_simple_example
 $ colcon build
 Starting >>> hello
 Finished <<< hello [15.9s]
@@ -42,7 +41,7 @@ The conan dependencies are installed by conan using a conanfile.txt
 #### Configure
 
 ```bash
-$ conan config install --source-folder extensions/generators --target-folder extensions/generators
+$ conan config install https://github.com/conan-io/conan-extensions.git --source-folder extensions/generators --target-folder extensions/generators
 ```
 
 #### Build and run the example
@@ -50,7 +49,7 @@ $ conan config install --source-folder extensions/generators --target-folder ext
 ```bash
 $ source /opt/ros/humble/setup.bash
 $ cd conan_install_ament_example
-$ conan install consumer/conanfile.txt --update --build missing
+$ conan install consumer/conanfile.txt --update --build missing --output-folder install
 $ colcon build --cmake-args '-DCMAKE_BUILD_TYPE=Release'
 ...
 
